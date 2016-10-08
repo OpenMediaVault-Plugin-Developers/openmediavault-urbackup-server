@@ -1,0 +1,5 @@
+openmediavault-urbackup-server (3.0) stable; urgency=low
+
+  * Initial release
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 27 Sep 2016 21:14:52 -0500

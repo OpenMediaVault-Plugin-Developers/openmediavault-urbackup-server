@@ -1,0 +1,20 @@
+Source: openmediavault-urbackup-server
+Section: net
+XB-Plugin-Section: backup
+Priority: optional
+Maintainer: OpenMediaVault Plugin Developers <plugins@omv-extras.org>
+Build-Depends: debhelper (>= 9.0.0 )
+Standards-Version: 3.9.6
+Homepage: http://omv-extras.org/
+
+Package: openmediavault-urbackup-server
+Architecture: all
+Depends: libcrypto++9,
+         openmediavault (>= 3.0.43),
+         sqlite3,
+         urbackup-server,
+         ${misc:Depends}
+Description: OpenMediaVault urbackup-server plugin
+ UrBackup is an easy to setup Open Source client/server backup system,
+ that through a combination of image and file backups accomplishes both
+ data safety and a fast restoration time.
