@@ -21,13 +21,13 @@
 \OMV\System\LogFileSpec::registerSpecification("urbackup-server", [
     "filename" => "urbackup.log",
     "filepath" => "/var/log/urbackup.log",
-    "regex"    => "/^\[(.*?)\]\s+(.*?)\..*?:\d+:\s+.*?:\s+(.*)$/",
-    "columns"  => [
-        "date"      => [
+    "regex" => "/^(\d+-\d+-\d+\s+\d+:\d+:\d+):\s+(.*)$/",
+    "columns" => [
+        "ts" => [
             "index" => 1,
-            "func"  => function($v) { return strpdate($v,"Y/n/j G:i:s"); }
+            "func" => function($v) { return strpdate($v,"Y-M-d H:i:s"); }
         ],
-        "component" => 2,
-        "event"     => 3
+        "date" => 1,
+        "message" => 2
     ]
 ]);

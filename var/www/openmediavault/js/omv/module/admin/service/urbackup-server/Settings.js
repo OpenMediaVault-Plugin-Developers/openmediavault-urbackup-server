@@ -28,6 +28,38 @@ Ext.define("OMV.module.admin.service.urbackup-server.Settings", {
     rpcGetMethod : "getSettings",
     rpcSetMethod : "setSettings",
 
+    plugins      : [{
+        ptype        : "linkedfields",
+        correlations : [{
+            name : [
+                "enable"
+            ],
+            conditions : [{
+                name  : "enable",
+                value : true
+            }],
+            properties : function(valid, field) {
+                this.setButtonDisabled("openweb", !valid);
+            }
+        }]
+    }],
+
+    getButtonItems : function() {
+        var me = this;
+        var items = me.callParent(arguments);
+        items.push({
+            id       : me.getId() + "-openweb",
+            xtype    : "button",
+            text     : _("Open Web Interface"),
+            icon     : "images/network.png",
+            iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
+            disabled : true,
+            scope    : me,
+            handler  : Ext.Function.bind(me.onOpenWebButton, me, [ me ])
+        });
+        return items;
+    },
+
     getFormItems : function () {
         return [{
             xtype         : "fieldset",
@@ -68,10 +100,10 @@ Ext.define("OMV.module.admin.service.urbackup-server.Settings", {
                 store      : new Ext.data.SimpleStore({
                     fields  : [ "value", "text" ],
                     data    : [
+                        [ "debug", _("Debug") ],
                         [ "error", _("Error") ],
-                        [ "warn", _("Warn") ],
                         [ "info", _("Info") ],
-                        [ "debug", _("Debug") ]
+                        [ "warn", _("Warn") ]
                     ]
                 }),
                 displayField  : "text",
@@ -82,6 +114,11 @@ Ext.define("OMV.module.admin.service.urbackup-server.Settings", {
                 value         : "warn"
             }]
         }];
+    },
+
+    onOpenWebButton : function() {
+        var me = this;
+        window.open("http://" + window.location.hostname + ":" + me.getForm().findField("webport").getValue(), "_blank");
     }
 });
 

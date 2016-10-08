@@ -26,35 +26,33 @@ Ext.define("OMV.module.admin.diagnostic.log.plugin.UrbackupServer", {
     extend : "OMV.module.admin.diagnostic.log.plugin.Plugin",
     alias  : "omv.plugin.diagnostic.log.urbackup-server",
 
-    id       : "urbackup-server",
-    text     : _("UrBackup Server"),
-    stateful : true,
-    stateId  : "12a1f193-e76a-481e-a1c0-13db308c97c0",
-    columns  : [{
-        text      : _("Date & Time"),
-        sortable  : true,
-        dataIndex : "date",
-        stateId   : "date",
-        renderer  : OMV.util.Format.localeTimeRenderer()
+    id: "urbackup-server",
+    text: _("UrBackup Server"),
+    stateful: true,
+    stateId: "1779c5e8-cf69-441a-8c9f-93259362f2fb",
+    columns: [{
+        text: _("Date & Time"),
+        sortable: true,
+        dataIndex: "rownum",
+        stateId: "date",
+        renderer: function(value, metaData, record) {
+            return record.get("date");
+        }
     },{
-        text      : _("Component"),
-        sortable  : true,
-        dataIndex : "component",
-        stateId   : "component",
-        flex      : 1
-    },{
-        text      : _("Event"),
-        sortable  : true,
-        dataIndex : "event",
-        stateId   : "event",
-        flex      : 1
+        xtype: "whitespacecolumn",
+        text: _("Message"),
+        sortable: true,
+        dataIndex: "message",
+        stateId: "message",
+        flex: 1
     }],
-    rpcParams : {
-        id : "urbackup-server"
+    rpcParams: {
+        id: "urbackup-server"
     },
-    rpcFields : [
-        { name : "date", type : "string" },
-        { name : "component", type : "string" },
-        { name : "event", type : "string" }
+    rpcFields: [
+        { name: "rownum", type: "int" },
+        { name: "ts", type: "int" },
+        { name: "date", type: "string" },
+        { name: "message", type: "string" }
     ]
 });
