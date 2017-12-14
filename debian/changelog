@@ -1,3 +1,10 @@
+openmediavault-urbackup-server (3.1) stable; urgency=low
+
+  * Remove the libcrypto dependency since it is not a dependency of the
+    plugin
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 14 Dec 2017 07:39:11 -0600
+
 openmediavault-urbackup-server (3.0) stable; urgency=low
 
   * Initial release

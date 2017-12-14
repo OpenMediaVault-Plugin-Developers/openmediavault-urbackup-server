@@ -9,8 +9,7 @@ Homepage: http://omv-extras.org/
 
 Package: openmediavault-urbackup-server
 Architecture: all
-Depends: libcrypto++9,
-         openmediavault (>= 3.0.43),
+Depends: openmediavault (>= 3.0.43),
          sqlite3,
          urbackup-server,
          ${misc:Depends}
