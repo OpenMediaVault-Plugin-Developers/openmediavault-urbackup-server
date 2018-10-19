@@ -24,7 +24,11 @@
 			    "type": "string",
 				"enum":[ "error", "warn", "info", "debug" ],
 		        "required": true
-			}
+			},
+			"runasroot": {
+		        "type": "boolean",
+		        "required": false
+		    }
 		}
 	}
 }]

@@ -3,7 +3,7 @@
  * @author    Volker Theile <volker.theile@openmediavault.org>
  * @author    OpenMediaVault Plugin Developers <plugins@omv-extras.org>
  * @copyright Copyright (c) 2009-2013 Volker Theile
- * @copyright Copyright (c) 2013-2016 OpenMediaVault Plugin Developers
+ * @copyright Copyright (c) 2013-2018 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -112,6 +112,11 @@ Ext.define("OMV.module.admin.service.urbackup-server.Settings", {
                 editable      : false,
                 triggerAction : "all",
                 value         : "warn"
+            },{
+                xtype      : "checkbox",
+                name       : "runasroot",
+                fieldLabel : _("Run as root"),
+                checked    : false
             }]
         }];
     },

@@ -26,6 +26,10 @@
 		"loglevel": {
 			"type": "string",
 			"default": "warn"
+		},
+		"runasroot": {
+			"type": "boolean",
+			"default": 0
 		}
 	}
 }

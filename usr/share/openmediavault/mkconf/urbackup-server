@@ -4,7 +4,7 @@
 # @author    Volker Theile <volker.theile@openmediavault.org>
 # @author    OpenMediaVault Plugin Developers <plugins@omv-extras.org>
 # @copyright Copyright (c) 2009-2013 Volker Theile
-# @copyright Copyright (c) 2013-2016 OpenMediaVault Plugin Developers
+# @copyright Copyright (c) 2013-2018 OpenMediaVault Plugin Developers
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,6 +30,11 @@ XPATH="/config/services/urbackup-server"
 log_level=$(omv_config_get "${XPATH}/loglevel")
 port=$(omv_config_get "${XPATH}/port")
 webport=$(omv_config_get "${XPATH}/webport")
+if [[ $(omv_config_get "${XPATH}/runasroot") -eq 1 ]]; then
+    runasroot="USER=root"
+else
+    runasroot=""
+fi
 
 # Create urbackup-server defaults file
 cat <<EOF > ${URBACKUP_SERVER_CONFIG}
@@ -69,6 +74,7 @@ SQLITE_TMPDIR=""
 #Interfaces from which to send broadcasts. (Default: all).
 #Comma separated -- e.g. "eth0,eth1"
 BROADCAST_INTERFACES=""
+${runasroot}
 ${extraoptions}
 EOF
 

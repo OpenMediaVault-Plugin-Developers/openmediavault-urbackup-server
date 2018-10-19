@@ -21,22 +21,13 @@
 
 set -e
 
-. /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
-case "$1" in
-    purge)
-        # Remove the configuration data
-        omv_config_delete "/config/services/urbackup-server"
-    ;;
+SERVICE_XPATH_NAME="urbackup-server"
+SERVICE_XPATH="/config/services/${SERVICE_XPATH_NAME}"
 
-    remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
-    ;;
-
-    *)
-        echo "postrm called with unknown argument '$1'" >&2
-        exit 1
-    ;;
-esac
+if ! omv_config_exists "${SERVICE_XPATH}/runasroot"; then
+    omv_config_add_key "${SERVICE_XPATH}" "runasroot" "0"
+fi
 
 exit 0
